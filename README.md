@@ -4,13 +4,13 @@
 This project implements a machine learning model to diagnose brain tumors from medical images, using NumPy as the primary data processing library.
 
 ## 📚 **Table of Contents**
-- [Introduction](#introduction)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contact](#contact)
+- [Introduction](#-introduction)
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [Contact](#-contact)
 
 ---
 

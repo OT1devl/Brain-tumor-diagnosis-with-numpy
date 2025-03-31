@@ -1,12 +1,12 @@
 import numpy as np
 
 class Activation:
-    def forward(self):
+    def forward(self, x):
         raise NotImplementedError('forward() is not implemented.')
     
-    def backward(self):
+    def backward(self, dout):
         raise NotImplementedError('backward() is not implemented.')
-    
+
 class ReLU(Activation):
     def forward(self, x):
         self.inputs = x
@@ -24,13 +24,12 @@ class LeakyReLU(Activation):
         self.inputs = x
         self.outputs = np.where(x>0, x, x*self.alpha)
         return self.outputs
-
+    
     def backward(self, dout):
         return dout * np.where(self.inputs>0, 1, self.alpha)
-    
+
 class Sigmoid(Activation):
     def forward(self, x):
-        self.inputs = x
         self.outputs = 1 / (1 + np.exp(-x))
         return self.outputs
     

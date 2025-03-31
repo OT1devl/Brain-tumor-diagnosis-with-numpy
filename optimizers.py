@@ -5,13 +5,13 @@ class Optimizer:
         raise NotImplementedError(f'{self.__class__.__name__} is not implemented.')
     
     def prev_update(self):
-        raise NotImplementedError(f'prev_update() is not implemented.')
+        raise NotImplementedError('prev_update() is not implemented.')
     
     def update_params(self, params: dict, grads: dict):
-        raise NotImplementedError(f'update_params() is not implemented.')
+        raise NotImplementedError('update_params() is not implemented.')
     
     def step(self):
-        raise NotImplementedError(f'step() is not implemented.')
+        raise NotImplementedError('step() is not implemented.')
     
 class Adam(Optimizer):
     def __init__(self, lr=0.001, decay=0, betas=(0.9, 0.999), epsilon=1e-8):
@@ -20,22 +20,22 @@ class Adam(Optimizer):
         self.decay = decay
         self.beta_1 = betas[0]
         self.beta_2 = betas[1]
-        self.epsilon = epsilon
         self.t = 1
         self.m = {}
         self.v = {}
-    
+        self.epsilon = epsilon
+
     def prev_update(self):
         if self.decay:
             self.current_lr = self.lr * (1 / (1 + self.decay * self.t))
-
+    
     def update_params(self, params: dict, grads: dict):
         if self.t == 1:
-            for name, val in params.items():
-                if name not in self.m:
-                    self.m[name] = np.zeros_like(val)
-                if name not in self.v:
-                    self.v[name] = np.zeros_like(val)
+            for param_name, param_val in params.items():
+                if param_name not in self.m:
+                    self.m[param_name] = np.zeros_like(param_val)
+                if param_name not in self.v:
+                    self.v[param_name] = np.zeros_like(param_val)
 
         for param_name, grad_name in zip(params.keys(), grads.keys()):
             self.m[param_name] = self.beta_1 * self.m[param_name] + (1 - self.beta_1) * grads[grad_name]

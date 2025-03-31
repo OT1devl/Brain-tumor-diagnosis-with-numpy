@@ -1,6 +1,6 @@
 import numpy as np
-import os
 import cv2 as cv
+import os
 
 def im2col_strided(x, field_height, field_width, padding=0, stride=1):
     m, H, W, C = x.shape
@@ -81,24 +81,14 @@ def fast_convolution_backprop(x, W, dout, padding=1, stride=1):
 
     return (dx_padded[:, padding:-padding, padding:-padding, :] if padding > 0 else dx_padded), dW, db
 
-def load_data(path, lab_dict, image_size, split=1):
-    data, labels = [], []
-
-    for label in os.listdir(path):
-        path_label = os.path.join(path, label)
-        images = os.listdir(path_label)
-        total_images = len(images)
-        labels.extend([lab_dict[label] for _ in range(int(total_images*split))]) # Be sure label is in dict
-        for idx, image_name in enumerate(images):
-            if idx >= int(total_images*split): continue
-            image_path = os.path.join(path_label, image_name)
-            image = cv.resize(cv.cvtColor(cv.imread(image_path), cv.COLOR_BGR2GRAY), (image_size, image_size))
-            data.append(image)
-            print(f'Image: [{idx+1}/{int(total_images*split)}] from {label}', end='\r')
-    return data, labels
+def one_hot(data, num_classes):
+    new_data = np.zeros((data.shape[0], num_classes))
+    new_data[np.arange(data.shape[0]), data] = 1
+    return new_data
 
 def shuffle_data(x, y=None):
     KEYS = np.arange(x.shape[0])
+    np.random.shuffle(KEYS)
     x = x[KEYS]
 
     if y is not None:
@@ -108,8 +98,30 @@ def shuffle_data(x, y=None):
     return x
 
 def split_data(x, y=None, split=0.2):
-    train_x, test_x = x[int(x.shape[0]*split):], x[:int(x.shape[0]*split)]
+    x_test, x_train = x[:int(x.shape[0]*split)], x[int(x.shape[0]*split):]
+
     if y is not None:
-        train_y, test_y = y[int(y.shape[0]*split):], y[:int(y.shape[0]*split)]
-        return train_x, test_x, train_y, test_y
-    return train_x, test_x
+        y_test, y_train = y[:int(y.shape[0]*split)], y[int(y.shape[0]*split):]
+        return x_train, y_train, x_test, y_test
+    
+    return x_train, x_test
+
+def load_data(path, label_dict, image_size, split=1):
+
+    data, labels = [], []
+
+    for label in os.listdir(path):
+
+        path_label = os.path.join(path, label)
+        images = os.listdir(path_label)
+        total_images = int(len(images)*split)
+        labels.extend([label_dict[label] for _ in range(total_images)])
+
+        for idx, image in enumerate(images, start=1):
+
+            path_image = os.path.join(path_label, image)
+            image = cv.resize(cv.cvtColor(cv.imread(path_image), cv.COLOR_BGR2GRAY), (image_size, image_size))
+            data.append(image)
+            print(f'Images: [{idx}/{total_images}] of {label}', end='\r')
+
+    return data, labels

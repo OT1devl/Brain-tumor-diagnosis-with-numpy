@@ -1,8 +1,8 @@
 import numpy as np
 
 class Loss:
-    def __init__(self, mode='mean'):
-        modes = 'mean', 'sum'
+    def __init__(self, mode='sum'):
+        modes = 'sum', 'mean'
         mode = mode.lower()
         if mode in modes:
             self.mode = mode
@@ -20,7 +20,7 @@ class Loss:
         raise NotImplementedError('backward() is not implemented.')
     
 class BinaryCrossEntropy(Loss):
-    def __init__(self, mode='mean', epsilon=1e-8):
+    def __init__(self, mode='sum', epsilon=1e-8):
         super().__init__(mode)
         self.epsilon = epsilon
 
@@ -28,4 +28,4 @@ class BinaryCrossEntropy(Loss):
         return -y_true*np.log(y_pred + self.epsilon) - (1 - y_true)*np.log(1 - y_pred + self.epsilon)
     
     def backward(self, y_true, y_pred):
-        return -y_true/(y_pred + self.epsilon) + (1 - y_pred)/(1 - y_pred + self.epsilon)
+        return -y_true/(y_pred + self.epsilon)+(1 - y_true)/(1 - y_pred + self.epsilon)

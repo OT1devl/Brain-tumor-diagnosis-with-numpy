@@ -15,7 +15,7 @@ This project implements a machine learning model to diagnose brain tumors from m
 ---
 
 ## 🧑‍⚕️ **Introduction**
-Early diagnosis of brain tumors is crucial to improving treatment and survival rates. The goal of this project is to facilitate automated diagnosis by analyzing medical images (e.g., MRI scans) using **NumPy-based** data processing techniques. This is a **from-scratch** model implemented purely with NumPy, intended for **educational purposes** only, and **not** for real-world use.
+The goal of this project is to facilitate automated diagnosis by analyzing medical images (e.g., MRI scans) using **NumPy-based** data processing techniques. This is a **from-scratch** model implemented purely with NumPy, intended for **educational purposes** only, and **not** for real-world use.
 
 ---
 

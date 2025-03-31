@@ -14,8 +14,8 @@ This project implements a machine learning model to diagnose brain tumors from m
 
 ---
 
-## 🧑‍⚕️ **Introduction**
-The goal of this project is to facilitate automated diagnosis by analyzing medical images (e.g., MRI scans) using **NumPy-based** data processing techniques. This is a **from-scratch** model implemented purely with NumPy, intended for **educational purposes** only, and **not** for real-world use.
+## 🧑‍⚕️ **Introduction**  
+Accurate classification of brain tumors is essential for guiding treatment decisions and improving patient care. This project aims to assist in automated diagnosis by analyzing medical images (e.g., MRI scans) of individuals already diagnosed with brain tumors. Using **NumPy-based** data processing techniques, the model is implemented **from scratch** without relying on high-level deep learning frameworks. This project is intended **for educational purposes only** and **not** for real-world medical use.
 
 ---
 
@@ -67,7 +67,6 @@ Before running the project, ensure you have the following Python packages instal
 ## ⚙️ **Usage**
 
 1. Ensure that medical images are located in the appropriate directory within the `datasets` folder.
-
 2. Run the training notebook to train the model:
 
    ```bash
@@ -97,4 +96,5 @@ Before running the project, ensure you have the following Python packages instal
 For any questions or suggestions, please contact me at:  
 📧 [otidevv1@gmail.com](mailto:otidevv1@gmail.com)  
 🌐 Visit my [GitHub profile](https://github.com/OT1devl).
+
 

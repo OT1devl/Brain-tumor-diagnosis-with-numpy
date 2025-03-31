@@ -15,7 +15,7 @@ This project implements a machine learning model to diagnose brain tumors from m
 ---
 
 ## 🧑‍⚕️ **Introduction**  
-Accurate classification of brain tumors is essential for guiding treatment decisions and improving patient care. This project aims to assist in automated diagnosis by analyzing medical images (e.g., MRI scans) of individuals already diagnosed with brain tumors. Using **NumPy-based** data processing techniques, the model is implemented **from scratch** without relying on high-level deep learning frameworks. This project is intended **for educational purposes only** and **not** for real-world medical use.
+Brain tumors are abnormal growths in the brain that can be life-threatening if not detected early. This project aims to automate the classification of MRI scans to determine the **presence or absence of a brain tumor** using **NumPy-based** data processing techniques. This is a **from-scratch** model implemented purely with NumPy, intended for **educational purposes** only, and **not** for real-world use.
 
 ---
 
